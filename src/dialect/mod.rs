@@ -290,14 +290,6 @@ mod tests {
                 self.0.supports_substring_from_for_expr()
             }
 
-            fn supports_in_empty_list(&self) -> bool {
-                self.0.supports_in_empty_list()
-            }
-
-            fn convert_type_before_value(&self) -> bool {
-                self.0.convert_type_before_value()
-            }
-
             fn parse_prefix(
                 &self,
                 parser: &mut sqlparser::parser::Parser,
