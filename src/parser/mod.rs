@@ -7863,7 +7863,7 @@ impl<'a> Parser<'a> {
             return parser_err!("Unsupported statement REPLACE", self.peek_token().location);
         }
 
-        let insert = &mut self.parse_insert().unwrap();
+        let insert = &mut self.parse_insert()?;
         if let Statement::Insert { replace_into, .. } = insert {
             *replace_into = true;
         }
