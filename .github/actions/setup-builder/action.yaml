@@ -31,12 +31,15 @@ runs:
   steps:
     - name: Setup Rust Toolchain
       shell: bash
+      env:
+        RUST_VERSION: ${{ inputs.rust-version }}
+        TARGETS: ${{ inputs.targets }}
       run: |
-        echo "Installing ${{ inputs.rust-version }}"
-        if [ -n "${{ inputs.targets}}" ]; then
-          rustup toolchain install ${{ inputs.rust-version }} -t ${{ inputs.targets }}
+        echo "Installing \"$RUST_VERSION\""
+        if [ -n "$TARGETS" ]; then
+          rustup toolchain install "$RUST_VERSION" -t "$TARGETS"
         else
-          rustup toolchain install ${{ inputs.rust-version }}
+          rustup toolchain install "$RUST_VERSION"
         fi
-        rustup default ${{ inputs.rust-version }}
+        rustup default "$RUST_VERSION"
         rustup component add rustfmt clippy
